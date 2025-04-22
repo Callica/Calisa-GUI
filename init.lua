@@ -1,4 +1,4 @@
--- Calisa GUI Loader (host via GitHub)
+-- Calisa GUI Loader (sem splash)
 local function load(url)
     return loadstring(game:HttpGet(url))()
 end
@@ -6,11 +6,6 @@ end
 -- Defina seu usuário e repositório
 local user = "Callica"
 local repo = "Calisa-GUI"
-
--- Load SplashScreen
-pcall(function()
-    load("https://raw.githubusercontent.com/"..user.."/"..repo.."/main/SplashScreen.lua")
-end)
 
 -- Load GUI
 local gui = load("https://raw.githubusercontent.com/"..user.."/"..repo.."/main/PanelBuilder.lua")
