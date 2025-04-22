@@ -8,80 +8,101 @@ MainGui.IgnoreGuiInset = true
 MainGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 MainGui.Parent = player:WaitForChild("PlayerGui")
 
-local function createSection(title, parent)
-	local section = Instance.new("Frame")
-	section.Name = title.."_Section"
-	section.Size = UDim2.new(0, 250, 0, 250)
-	section.Position = UDim2.new(0, 0, 0, 0)
-	section.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-	section.BorderSizePixel = 0
-	section.Visible = false
-	section.Parent = parent
-	return section
-end
-
-local function createButton(name, text, pos, parent)
-	local btn = Instance.new("TextButton")
-	btn.Name = name
-	btn.Text = text
-	btn.Size = UDim2.new(0, 120, 0, 30)
-	btn.Position = pos
-	btn.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-	btn.TextColor3 = Color3.new(1,1,1)
-	btn.Font = Enum.Font.GothamBold
-	btn.TextSize = 14
-	btn.BorderSizePixel = 0
-	btn.AutoButtonColor = true
-	btn.Parent = parent
-	return btn
-end
-
 local MainFrame = Instance.new("Frame")
 MainFrame.Name = "MainFrame"
-MainFrame.Size = UDim2.new(0, 300, 0, 400)
-MainFrame.Position = UDim2.new(0.5, -150, 0.5, -200)
-MainFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+MainFrame.Size = UDim2.new(0, 500, 0, 400)
+MainFrame.Position = UDim2.new(0.5, -250, 0.5, -200)
+MainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 MainFrame.BorderSizePixel = 0
 MainFrame.Parent = MainGui
 
--- Criar seções
-local characterSection = createSection("Character", MainFrame)
-local targetSection = createSection("Target", MainFrame)
-local miscSection = createSection("Misc", MainFrame)
-local gameSection = createSection("Game", MainFrame)
-local animationsSection = createSection("Animations", MainFrame)
-local utilsSection = createSection("Utils", MainFrame)
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0, 8)
+UICorner.Parent = MainFrame
 
--- Botões da aba principal
-local y = 10
-local function createTabButton(tabName, section)
-	local btn = createButton(tabName.."_Button", tabName, UDim2.new(0, 10, 0, y), MainFrame)
-	btn.MouseButton1Click:Connect(function()
-		for _, child in ipairs(MainFrame:GetChildren()) do
-			if child:IsA("Frame") and child.Name:find("_Section") then
-				child.Visible = false
-			end
-		end
-		section.Visible = true
-	end)
-	y = y + 40
-end
+-- Character Controls
+local Fly_Button = Instance.new("TextButton")
+Fly_Button.Name = "Fly_Button"
+Fly_Button.Text = "Fly"
+Fly_Button.Position = UDim2.new(0, 20, 0, 20)
+Fly_Button.Size = UDim2.new(0, 100, 0, 30)
+Fly_Button.Parent = MainFrame
 
-createTabButton("Character", characterSection)
-createTabButton("Target", targetSection)
-createTabButton("Misc", miscSection)
-createTabButton("Game", gameSection)
-createTabButton("Animations", animationsSection)
-createTabButton("Utils", utilsSection)
+local FlySpeed_Box = Instance.new("TextBox")
+FlySpeed_Box.Name = "FlySpeed_Box"
+FlySpeed_Box.Text = "Speed"
+FlySpeed_Box.Position = UDim2.new(0, 130, 0, 20)
+FlySpeed_Box.Size = UDim2.new(0, 80, 0, 30)
+FlySpeed_Box.Parent = MainFrame
 
-return MainFrame
+local WalkSpeed_Box = Instance.new("TextBox")
+WalkSpeed_Box.Name = "WalkSpeed_Box"
+WalkSpeed_Box.Text = "Walk"
+WalkSpeed_Box.Position = UDim2.new(0, 220, 0, 20)
+WalkSpeed_Box.Size = UDim2.new(0, 80, 0, 30)
+WalkSpeed_Box.Parent = MainFrame
 
+local JumpPower_Box = Instance.new("TextBox")
+JumpPower_Box.Name = "JumpPower_Box"
+JumpPower_Box.Text = "Jump"
+JumpPower_Box.Position = UDim2.new(0, 310, 0, 20)
+JumpPower_Box.Size = UDim2.new(0, 80, 0, 30)
+JumpPower_Box.Parent = MainFrame
+
+local SaveCheckpoint_Button = Instance.new("TextButton")
+SaveCheckpoint_Button.Name = "SaveCheckpoint_Button"
+SaveCheckpoint_Button.Text = "Save Checkpoint"
+SaveCheckpoint_Button.Position = UDim2.new(0, 20, 0, 60)
+SaveCheckpoint_Button.Size = UDim2.new(0, 150, 0, 30)
+SaveCheckpoint_Button.Parent = MainFrame
+
+local ClearCheckpoint_Button = Instance.new("TextButton")
+ClearCheckpoint_Button.Name = "ClearCheckpoint_Button"
+ClearCheckpoint_Button.Text = "Clear Checkpoint"
+ClearCheckpoint_Button.Position = UDim2.new(0, 180, 0, 60)
+ClearCheckpoint_Button.Size = UDim2.new(0, 150, 0, 30)
+ClearCheckpoint_Button.Parent = MainFrame
+
+local Respawn_Button = Instance.new("TextButton")
+Respawn_Button.Name = "Respawn_Button"
+Respawn_Button.Text = "Respawn"
+Respawn_Button.Position = UDim2.new(0, 340, 0, 60)
+Respawn_Button.Size = UDim2.new(0, 120, 0, 30)
+Respawn_Button.Parent = MainFrame
+
+-- Target field + example (Bang)
+local Target_Box = Instance.new("TextBox")
+Target_Box.Name = "Target_Box"
+Target_Box.Text = "PlayerName"
+Target_Box.Position = UDim2.new(0, 20, 0, 110)
+Target_Box.Size = UDim2.new(0, 200, 0, 30)
+Target_Box.Parent = MainFrame
+
+local Bang_Button = Instance.new("TextButton")
+Bang_Button.Name = "Bang_Button"
+Bang_Button.Text = "Bang"
+Bang_Button.Position = UDim2.new(0, 230, 0, 110)
+Bang_Button.Size = UDim2.new(0, 80, 0, 30)
+Bang_Button.Parent = MainFrame
+
+-- Fechar
 local CloseButton = Instance.new("TextButton")
+CloseButton.Name = "Close_Button"
+CloseButton.Text = "Fechar"
 CloseButton.Size = UDim2.new(0, 100, 0, 30)
 CloseButton.Position = UDim2.new(1, -110, 0, 10)
 CloseButton.BackgroundColor3 = Color3.fromRGB(255, 60, 60)
-CloseButton.Text = "Fechar"
+CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+CloseButton.Font = Enum.Font.GothamBold
+CloseButton.TextScaled = true
 CloseButton.Parent = MainFrame
+
 CloseButton.MouseButton1Click:Connect(function()
-    MainFrame.Visible = false
+	MainFrame.Visible = false
 end)
+
+return {
+	Create = function()
+		MainGui.Enabled = true
+	end
+}
