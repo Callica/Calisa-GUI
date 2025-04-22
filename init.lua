@@ -6,17 +6,20 @@ end
 -- Defina seu usuário e repositório
 local user = "Callica"
 local repo = "Calisa-GUI"
+local base = "https://raw.githubusercontent.com/"..user.."/"..repo.."/main/"
 
 -- Load SplashScreen
 pcall(function()
-    load("https://raw.githubusercontent.com/"..user.."/"..repo.."/main/SplashScreen.lua")
+    load(base.."SplashScreen.lua")
 end)
 
 -- Load GUI
-local gui = load("https://raw.githubusercontent.com/"..user.."/"..repo.."/main/PanelBuilder.lua")
-local built = gui and gui.Create and gui:Create()
+local builder = load(base.."PanelBuilder.lua")
+if builder and builder.Create then
+    builder.Create()
+end
 
 -- Load Main
 pcall(function()
-    load("https://raw.githubusercontent.com/"..user.."/"..repo.."/main/main.lua")
+    load(base.."main.lua")
 end)
