@@ -4,7 +4,7 @@ local function load(url)
 end
 
 -- Defina seu usuário e repositório
-local user = "SEU_USUARIO"
+local user = "Callica"
 local repo = "Calisa-GUI"
 
 -- Load SplashScreen
