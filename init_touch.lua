@@ -1,24 +1,22 @@
--- Calisa GUI Loader (versão com botão flutuante para mobile)
+-- Calisa GUI Loader (pra estrutura raiz do repositório)
 local function load(url)
     return loadstring(game:HttpGet(url))()
 end
 
--- Defina seu usuário e repositório
-local user = "SEU_USUARIO"
-local repo = "Calisa-GUI"
+local base = "https://raw.githubusercontent.com/Callica/Calisa-GUI/main/"
 
 -- Splash Screen
 pcall(function()
-    load("https://raw.githubusercontent.com/"..user.."/"..repo.."/main/SplashScreen.lua")
+    load(base.."SplashScreen.lua")
 end)
 
 -- Criar GUI
-local builder = load("https://raw.githubusercontent.com/"..user.."/"..repo.."/main/PanelBuilder.lua")
+local builder = load(base.."PanelBuilder.lua")
 if builder and builder.Create then
     builder.Create()
 end
 
 -- Rodar lógica principal
 pcall(function()
-    load("https://raw.githubusercontent.com/"..user.."/"..repo.."/main/main.lua")
+    load(base.."main.lua")
 end)
