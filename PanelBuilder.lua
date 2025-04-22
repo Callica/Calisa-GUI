@@ -75,3 +75,13 @@ createTabButton("Animations", animationsSection)
 createTabButton("Utils", utilsSection)
 
 return MainFrame
+
+local CloseButton = Instance.new("TextButton")
+CloseButton.Size = UDim2.new(0, 100, 0, 30)
+CloseButton.Position = UDim2.new(1, -110, 0, 10)
+CloseButton.BackgroundColor3 = Color3.fromRGB(255, 60, 60)
+CloseButton.Text = "Fechar"
+CloseButton.Parent = MainFrame
+CloseButton.MouseButton1Click:Connect(function()
+    MainFrame.Visible = false
+end)
